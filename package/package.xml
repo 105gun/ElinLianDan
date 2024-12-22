@@ -3,7 +3,40 @@
 	<id>lian_dan</id>
 	<author>105gun</author>
 	<loadPriority>100</loadPriority>
-    <description></description>
+    <description>[img] https://s2.loli.net/2024/12/22/FoJu167zkjPXNOL.png [/img]
+[h1] Intro [/h1]
+This mod allows you to use Chinese alchemy which can refine NPCs into Danyaos (pills). The basic attributes and levels of NPCs will be converted in a certain proportion, and users can directly increase their corresponding levels and feat points.
+
+[img] https://s2.loli.net/2024/12/22/xrcM6kYpzAuos4m.png [/img]
+[h1] Furniture: Alchemy stove [/h1]
+After enabling this mod, the drafting table will unlock the recipe for the alchemy stove. Creating and installing an alchemy stove will give you a new skill: Chinese Alchemy.
+(Apart from affecting the grade of the elixir, this furniture currently has no other use.)
+[h2] Cheating [/h2]
+Directly obtain the alchemy stove   Spawn dan_lu
+
+[img] https://s2.loli.net/2024/12/22/s7dZIDGxW31TV6e.png [/img]
+[h1] Skill: Chinese Alchemy [/h1]
+Chinese Alchemy can be used for most NPCs. This skill is similar to theft and may be discovered and interrupted. When you success, NPCs will be refined into a Danyao. The refined ally character will disappear.
+(To avoid a bug where the main storyline cannot proceed due to the death of key characters, this skill cannot be used on ally characters marked as Unique.)
+[h2] Instant Chinese Alchemy [/h2]
+When one of the following conditions is met, Chinese Alchemy will be completed instantly:
+- The target is the player's ally
+- The target's health is less than 10%
+- The level of the target is less than 10% of the PC's STR
+
+[img] https://s2.loli.net/2024/12/22/qaeg8FY2sXQpfBw.png [/img]
+[h1] Food: Danyao [/h1]
+Danyao is divided into three qualities: Danyao, Jindan, and Xiandan. The only difference between them is the conversion rate of the levels. The lowest level Danyao is one-fifth; Jindan is one-third; Xiandan is one-to-one.
+Only basic attributes (STR, CHA, etc.) and character levels will be converted. When the character level is increased, corresponding expertise points will be obtained.
+[h2] Rule [/h2]
+When carrying an alchemy stove, there is a 90% chance of refining NPC into Jindan and a 10% chance of refining him into Xiandan.
+When not carrying an alchemy stove, there is an 89% chance of refining NPC into Danyao, a 10% chance of refining them into Jindan, and a 1% chance of refining them into Xiandan.
+When the PC is located within the base, an alchemy stove installed on the ground can be used, too. Using the alchemy skill on PC can confirm whether you are carrying an alchemy stove.
+
+[h1] Warning [/h1]
+This mod aims to alleviate the problem of insufficient PC and NPC ally attributes in the endgame stage, which may to some extent disrupt the numerical balance in the early and middle stages of the game.
+
+Source: https://github.com/105gun/ElinLianDan</description>
 	<version>0.23.65</version>
 	<tags>Skill</tags>
 </Meta>

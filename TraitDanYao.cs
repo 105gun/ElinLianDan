@@ -18,10 +18,10 @@ public class TraitDanYao : TraitFood
         for (int i = 70; i <= 77; i++)
         {
             Element charaElement = c.elements.GetElement(i);
-            int increaseElementLvl = this.owner.elements.GetElement(i).Value / 10;
+            int increasedElementLvl = this.owner.elements.GetElement(i).Value / 10;
             int vBase = charaElement.vBase;
 
-            c.elements.ModBase(i, increaseElementLvl);
+            c.elements.ModBase(i, increasedElementLvl);
             c.elements.OnLevelUp(charaElement, vBase);
         }
         for (int i = 0; i < owner.LV; i++)

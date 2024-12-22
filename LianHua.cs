@@ -153,10 +153,18 @@ public class AI_LianHua : AI_TargetCard
         // Karma
         if (CC == EClass.pc)
         {
-            EClass.player.ModKarma(-5);
+            if (targetChara.OriginalHostility == Hostility.Enemy)
+            {
+                EClass.player.ModKarma(-1);
+            }
+            else
+            {
+                EClass.player.ModKarma(-5);
+            }
         }
 
         // Msg
+        Msg.SetColor(Msg.colors.TalkGod);
         Msg.SayRaw("lianhua_success".lang(targetChara.Name, danYao.Name));
     }
 
@@ -226,7 +234,7 @@ public class AI_LianHua : AI_TargetCard
         }
 
         // Qing Ke Lian Hua
-        if (chara.LV < CC.STR / 10 || chara.hp < chara.MaxHP / 10 || chara.IsPCFactionOrMinion)
+        if (chara.LV * 10 < CC.STR || chara.hp < chara.MaxHP / 10 || chara.IsPCFactionOrMinion)
         {
             if (chara.IsPCFactionOrMinion)
             {
@@ -262,7 +270,7 @@ public class AI_LianHua : AI_TargetCard
                     return;
                 }
             }
-            if (pos.TryWitnessCrime(this.owner, chara, 7, funcWitness))
+            if (pos.TryWitnessCrime(this.owner, chara, 7, funcWitness) && chara.hostility != Hostility.Enemy)
             {
                 p.Cancel();
                 return;
