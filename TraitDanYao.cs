@@ -30,3 +30,19 @@ public class TraitDanYao : TraitFood
         }
     }
 }
+
+// Chara.GiveGift
+[HarmonyPatch(typeof(Chara), "GiveGift")]
+public static class DanYaoGiftPatch
+{
+    public static void Postfix(Chara __instance, Chara c, Thing t)
+    {
+        if (t.trait is TraitDanYao && !c.IsHostile() && !c.IsDeadOrSleeping)
+        {
+            c.SetAIImmediate(new AI_Eat
+				{
+					target = t
+				});
+        }
+    }
+}

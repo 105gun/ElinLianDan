@@ -24,7 +24,7 @@ public class Plugin : BaseUnityPlugin
     public const string MOD_AUTHOR = "105gun";
     public const string MOD_NAME = "LianDan";
     public const string MOD_NAME_LOWER = "liandan";
-    public const string MOD_VERSION = "1.0.2.0";
+    public const string MOD_VERSION = "1.0.3.0";
     public static bool enableDebug = false;
     static PrivateLogLevel pluginLogLevel = PrivateLogLevel.Info;
 
