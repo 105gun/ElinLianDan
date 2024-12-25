@@ -276,7 +276,7 @@ public class AI_LianHua : AI_TargetCard
         }
 
         // Qing Ke Lian Hua
-        if (chara.LV * 10 < CC.STR || chara.hp < chara.MaxHP / 10 || chara.IsPCFactionOrMinion)
+        if (Plugin.enableDebug || chara.LV * 10 < CC.STR || chara.hp < chara.MaxHP / 10 || chara.IsPCFactionOrMinion)
         {
             if (chara.IsPCFactionOrMinion)
             {
