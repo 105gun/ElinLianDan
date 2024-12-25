@@ -22,6 +22,7 @@ public class AI_LianHua : AI_TargetCard
 
     List<string> banList = new List<string> {""}; // adv_mutsumi
     public static Func<Chara, bool> funcWitness;
+    public const int magicNumber = 10086514; 
 
     public AI_LianHua()
     {
@@ -97,10 +98,48 @@ public class AI_LianHua : AI_TargetCard
         }
     }
 
+    public int GetConvertedData(int origin, DanYaoType type)
+    {
+        int result = 0;
+        origin = (int)(origin * Settings.GetSettings().extraMultiplier);
+        origin = origin < 1 ? 1 : origin;
+        if (Settings.GetSettings().legacyRatio)
+        {
+            switch (type)
+            {
+                case DanYaoType.XianDan:
+                    result = (int)(origin * 1.0);
+                    break;
+                case DanYaoType.JinDan:
+                    result = (int)(origin * 0.333);
+                    break;
+                default:
+                    result = (int)(origin * 0.2);
+                    break;
+            }
+        }
+        else
+        {
+            switch (type)
+            {
+                case DanYaoType.XianDan:
+                    result = (int)(Mathf.Sqrt(origin) * 2);
+                    break;
+                case DanYaoType.JinDan:
+                    result = (int)(Mathf.Sqrt(origin) * 2 * 0.333);
+                    break;
+                default:
+                    result = (int)(Mathf.Sqrt(origin) * 2 * 0.2);
+                    break;
+            }
+        }
+        result = Mathf.Max(1, result);
+        return result;
+    }
+
     public void LianHua()
     {
         string danYaoName;
-        float skillMultiplier;
         Thing danYao;
         Chara targetChara = this.target.Chara;
         DanYaoType type = GetDanYaoType();
@@ -109,27 +148,26 @@ public class AI_LianHua : AI_TargetCard
         {
             case DanYaoType.JinDan:
                 danYaoName = "jin_dan";
-                skillMultiplier = 0.333f;
                 break;
             case DanYaoType.XianDan:
                 danYaoName = "xian_dan";
-                skillMultiplier = 1.0f;
                 break;
             default:
                 danYaoName = "dan_yao";
-                skillMultiplier = 0.2f;
                 break;
         }
 
         // Make dan yao
         danYao = ThingGen.Create(danYaoName);
         danYao.MakeRefFrom(targetChara, null);
-        danYao.LV = (int)(targetChara.LV * skillMultiplier + 1);
+        danYao.LV = GetConvertedData(targetChara.LV, type);
+        danYao.SetInt(magicNumber, targetChara.LV); // Save original LV
         foreach (Element ele in targetChara.elements.dict.Values)
         {
             if (ele.id >= 70 && ele.id <= 77)
             {
-                danYao.elements.dict[ele.id].vSource = (int)(ele.Value * skillMultiplier + 1) * 10;
+                danYao.elements.dict[ele.id].vBase = GetConvertedData(ele.Value, type) * 10;
+                danYao.SetInt(ele.id + magicNumber, ele.Value); // Save original element
             }
         }
         targetChara._affinity = -100;
@@ -146,6 +184,10 @@ public class AI_LianHua : AI_TargetCard
         else
         {
             targetChara.Die(null, null, AttackSource.DeathSentense);
+        }
+        if (EClass.rnd(2) == 0)
+        {
+            targetChara.hostility = Hostility.Enemy;
         }
         
         CC.Pick(danYao);

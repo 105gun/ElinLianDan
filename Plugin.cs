@@ -24,7 +24,7 @@ public class Plugin : BaseUnityPlugin
     public const string MOD_AUTHOR = "105gun";
     public const string MOD_NAME = "LianDan";
     public const string MOD_NAME_LOWER = "liandan";
-    public const string MOD_VERSION = "1.0.0.0";
+    public const string MOD_VERSION = "1.0.2.0";
     static PrivateLogLevel pluginLogLevel = PrivateLogLevel.Info;
 
     private void Start()
@@ -32,6 +32,7 @@ public class Plugin : BaseUnityPlugin
         ModLog("Initializing");
         var harmony = new Harmony($"{MOD_AUTHOR}.{MOD_NAME_LOWER}.mod");
         harmony.PatchAll();
+        Settings.LoadSettings();
         ModLog("Initialization completed");
     }
 
